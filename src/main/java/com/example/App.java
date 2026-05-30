@@ -2,26 +2,19 @@ package com.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import jakarta.annotation.PostConstruct;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController; // Add this
 
 @SpringBootApplication
+@RestController // Add this to make this class handle web requests
 public class App {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
 
-    @PostConstruct
-    public void init()
-    {
-        Logger log = LoggerFactory.getLogger(App.class);
-        log.info("Java app started");
-    }
-
+    @GetMapping("/") // Map this method to the root URL
     public String getStatus() {
         return "OK";
     }
-}
+

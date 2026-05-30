@@ -12,8 +12,8 @@ RUN gradle build -x test --no-daemon
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
-# Safely copy the compiled jar file out of the builder workspace
-COPY --from=builder /home/gradle/project/build/libs/my-app-1.0-SNAPSHOT.jar app.jar
+# Safely copy the compiled jar file using a wildcard
+COPY --from=builder /home/gradle/project/build/libs/*.jar app.jar
 
 EXPOSE 8080
 
